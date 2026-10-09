@@ -1,0 +1,6 @@
+// Add inside the existing match /databases/{database}/documents block.
+// Keep all rules for the project's other applications.
+match /operationsManualStudio/{userId}/{document=**} {
+  allow read, write: if request.auth != null
+                    && request.auth.uid == userId;
+}
