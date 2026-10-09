@@ -2,41 +2,29 @@
 
 Operations Manual Studio for PT. Transwisata Prima Aviation: OM A, B, C and D.
 
-## Open the application
+## Run
 
-Open `index.html` locally for editing, or publish it through GitHub Pages:
+Open index.html locally, or enable GitHub Pages in repository Settings > Pages, branch main, folder / (root).
 
-1. Open repository Settings > Pages.
-2. Select Deploy from a branch, branch `main`, folder `/ (root)`.
-3. Save and wait for GitHub to show the published address.
+## Shared Firebase workspace — no login screen
 
-The application includes its PDF and DOCX readers. Firebase cloud sync requires an internet connection.
+Project: ecrew-absensi-183ac.
 
-## Firebase
-
-Project: `ecrew-absensi-183ac`.
-
-1. Enable Email/Password in Firebase Authentication and create the intended user account. Google sign-in is optional.
+1. Enable Anonymous sign-in in Firebase Authentication.
 2. Create the default Cloud Firestore database.
-3. Add the match block in `firestore-rules-snippet.txt` inside your existing `match /databases/{database}/documents` block. Keep all rules used by your other applications.
-4. For Google sign-in, add the published website domain to Authentication > Settings > Authorized domains.
-5. Open Cloud Sync, sign in, and choose Upload this device or Load cloud. Automatic sync starts after this first choice.
+3. Add firestore-rules-snippet.txt inside your existing match /databases/{database}/documents block. Keep rules for the project's other applications.
+4. Open the application. Firebase creates an anonymous session automatically, loads the shared OM A–D and enables automatic sync.
 
-Cloud data is account-specific under `operationsManualStudio/{uid}`. Another device must use the same account to access the same manuals. Concurrent edits are checked before saving; an outdated device is asked to reload instead of overwriting another device's changes.
+All devices use operationsManualPortal/transwisata. Anyone opening the portal can read and edit the shared manuals once these rules are enabled. Individual accounts are not required. Previous account-specific workspaces are left in their original collection and are not migrated automatically.
 
-The Firebase web configuration is included in the HTML. No service-account credentials are included. Manual contents entered by users are saved locally or to the signed-in user's Firestore workspace, not committed to this repository.
+Local editing remains available offline. Device copies are retained before automatic cloud loads and can be restored through Cloud Sync with automatic sync paused. Cloud transactions reject outdated saves. Download a JSON backup before major changes.
 
 ## Features
 
-- Independent OM A–D workspaces and automatic LOEP / table of contents.
-- Editable A4 pages, revision bars, signatures and stamps.
-- PDF, DOCX, TXT and JSON import; editable PDF text with chapter/header recognition.
-- Undo/redo, paragraph formatting, automatic paste pagination.
-- Independent panel scrolling, zoom controls, fullscreen editing.
-- Desktop Ctrl + scroll up: zoom out; Ctrl + scroll down: zoom in.
-- Local offline saving, JSON backups, print / PDF export and Firebase cloud sync.
+Editable A4 pages, LOEP and TOC, PDF/DOCX/TXT/JSON import, automatic chapter and title detection, nested numbering, revision bars, signatures and stamps, undo/redo, paragraph formatting, automatic paste pagination, independent panel scrolling, zoom, fullscreen, print/PDF export and a Transwisata application logo.
 
-PDF scans without a text layer need OCR. Review imported layouts before printing.
+Desktop Ctrl + scroll up: zoom out; Ctrl + scroll down: zoom in.
 
-Firebase Authentication, Firestore access rules and a live cloud connection must be configured and verified in the project before cloud sync can be used.
+PDF scans require OCR. Review converted layouts before printing.
 
+Firebase service-account credentials and user-entered manuals are not committed to this repository. The cloud integration cannot save until Anonymous Authentication and Firestore rules have been enabled in the Firebase project.

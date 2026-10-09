@@ -1,6 +1,8 @@
 // Add inside the existing match /databases/{database}/documents block.
-// Keep all rules for the project's other applications.
-match /operationsManualStudio/{userId}/{document=**} {
+// Keep all other application rules.
+// Anyone opening the portal can automatically obtain an anonymous session
+// and read or edit this shared workspace once this rule is enabled.
+match /operationsManualPortal/{workspaceId}/{document=**} {
   allow read, write: if request.auth != null
-                    && request.auth.uid == userId;
+                    && workspaceId == 'transwisata';
 }
