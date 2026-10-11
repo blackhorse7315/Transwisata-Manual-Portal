@@ -2,29 +2,22 @@
 
 Operations Manual Studio for PT. Transwisata Prima Aviation: OM A, B, C and D.
 
-## Run
+## Current deployment
 
-Open index.html locally, or enable GitHub Pages in repository Settings > Pages, branch main, folder / (root).
+`index.html` remains the existing application. Login/account management and server-generated revision audit have been prepared in `login-admin-preview.html`; Firebase backend deployment and initial administrator provisioning are pending. The preview will accept login only after backend activation.
 
-## Shared Firebase workspace — no login screen
+See [activation instructions](LOGIN-ACTIVATION.md) and [backend/source package](firebase-login-admin.zip). Do not replace the main application or deploy access rules until the backend and administrator have been verified.
 
-Project: ecrew-absensi-183ac.
+## New version
 
-1. Enable Anonymous sign-in in Firebase Authentication.
-2. Create the default Cloud Firestore database.
-3. Add firestore-rules-snippet.txt inside your existing match /databases/{database}/documents block. Keep rules for the project's other applications.
-4. Open the application. Firebase creates an anonymous session automatically, loads the shared OM A–D and enables automatic sync.
+- Firebase Authentication username/password login.
+- Admin-only user management (name, username, password reset and removal of access).
+- Shared Log of Revision: editor identity, manual, chapter, page number, added/deleted text, changed fields and server date/time displayed in WIB.
+- Server-side role enforcement and conflict-protected cloud commits. No plaintext passwords in public code, Firestore profiles or manual backups.
+- Existing Firebase snapshots retained and compatible. Earlier edits have no retroactively invented attribution.
 
-All devices use operationsManualPortal/transwisata. Anyone opening the portal can read and edit the shared manuals once these rules are enabled. Individual accounts are not required. Previous account-specific workspaces are left in their original collection and are not migrated automatically.
+## Existing editor
 
-Local editing remains available offline. Device copies are retained before automatic cloud loads and can be restored through Cloud Sync with automatic sync paused. Cloud transactions reject outdated saves. Download a JSON backup before major changes.
+Portrait/landscape for a page or whole manual; A4/A3/A5/Letter/Legal/Tabloid. Scoped paragraph alignment and spacing, tables with row/column insertion, image wrapping/layers, editable LOEP/TOC, imports, revision bars, signatures, undo/redo, automatic paste pagination, fixed panels, zoom and fullscreen.
 
-## Features
-
-Editable A4 pages, LOEP and TOC, PDF/DOCX/TXT/JSON import, automatic chapter and title detection, nested numbering, revision bars, signatures and stamps, undo/redo, paragraph formatting, automatic paste pagination, independent panel scrolling, zoom, fullscreen, print/PDF export and a Transwisata application logo.
-
-Desktop Ctrl + scroll up: zoom out; Ctrl + scroll down: zoom in.
-
-PDF scans require OCR. Review converted layouts before printing.
-
-Firebase service-account credentials and user-entered manuals are not committed to this repository. The cloud integration cannot save until Anonymous Authentication and Firestore rules have been enabled in the Firebase project.
+Imported PDF text/layout needs review. Scans require OCR. Manuals and service-account credentials are not included in this repository.
