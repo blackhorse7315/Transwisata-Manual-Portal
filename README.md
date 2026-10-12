@@ -6,7 +6,13 @@ The portal uses assigned username/password accounts. Active members can edit man
 
 ## Latest backend update
 
-Use **firebase-manual-library-update.zip**, extract into a new folder, then follow **MANUAL-LIBRARY-UPDATE.md**. This combined update supports additional manuals AND administrator log deletion/recovery. It deploys 9 Firebase Functions, including portalManageRevisions. Existing accounts and OM snapshots are retained; do not run initial administrator bootstrap again.
+Use **firebase-aircrew-font-update.zip**, extract into a new folder, then double-click **firebase-admin/deploy-update.cmd** or follow **AIRCREW-FONTS-UPDATE.md**. This combined update includes custom manuals, admin log deletion/recovery, the Aircrew read-only role and portalReadManuals. It deploys 10 Firebase Functions in the manual-portal codebase. Existing accounts and manual snapshots remain in use. The script increases the CLI discovery timeout to 60 seconds and the backend initializes Admin services on request.
+
+## Aircrew access and text formatting
+
+Administrators create or edit non-admin accounts as User (editor) or Aircrew (read-only). Aircrew opens a dedicated manual reader with manual/page selection, search, navigation, reading zoom and Refresh. Server permissions reject all Aircrew uploads, manual commits, account management and audit-log operations. The Aircrew option is gated on deployed backend support.
+
+Editors can choose Arial/Calibri and font size for selected text, the current page or all pages in the current manual, with Left/Center/Right/Justify paragraph alignment and undo/redo.
 
 ## Manual library
 
